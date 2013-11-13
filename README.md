@@ -1,3 +1,3 @@
-FooCoin (FOO)
+FilthCoin (FLT)
 
 Blah, blah, blah.
