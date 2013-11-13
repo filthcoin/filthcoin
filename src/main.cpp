@@ -13,6 +13,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/fstream.hpp>
 
+
 using namespace std;
 using namespace boost;
 
@@ -1981,7 +1982,7 @@ bool LoadBlockIndex(bool fAllowNew)
         pchMessageStart[1] = 0xc0;
         pchMessageStart[2] = 0xb8;
         pchMessageStart[3] = 0xdb;
-        hashGenesisBlock = uint256("0x");
+        hashGenesisBlock = uint256("e71ca4a9d55f4767d30c2391c9e0a6355d4e877b9772568bd3d58b0139711efc");
     }
 
     //
@@ -2021,14 +2022,17 @@ bool LoadBlockIndex(bool fAllowNew)
         if (fTestNet)
         {
             block.nTime    = 1384355805;
-            block.nNonce   = 0;
+            block.nNonce   = 471548;
         }
 
         //// debug print
         printf("%s\n", block.GetHash().ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x"));
+        
+        fprintf(stderr, block.hashMerkleRoot.ToString().c_str());
+        
+        assert(block.hashMerkleRoot == uint256("40f0dc2213225f22b040cc58ae56561ebcc575196bd72643f2873564e1b342ed"));
 
         // If genesis block hash does not match, then generate new genesis hash.
         if (true && block.GetHash() != hashGenesisBlock)
@@ -2056,9 +2060,9 @@ bool LoadBlockIndex(bool fAllowNew)
                     ++block.nTime;
                 }
             }
-            printf("block.nTime = %u \n", block.nTime);
-            printf("block.nNonce = %u \n", block.nNonce);
-            printf("block.GetHash = %s\n", block.GetHash().ToString().c_str());
+            fprintf(stderr, "block.nTime = %u \n", block.nTime);
+            fprintf(stderr, "block.nNonce = %u \n", block.nNonce);
+            fprintf(stderr, "block.GetHash = %s\n", block.GetHash().ToString().c_str());
         }
 
         block.print();
